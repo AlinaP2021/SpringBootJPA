@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>Bank</title>
+</head>
+
+<body>
+    <th:block th:include="/_menu"></th:block>
+
+    <h2>Accounts</h2>
+    <table>
+        <tr>
+            <th>ID</th>
+            <th>Full Name</th>
+            <th>Balance</th>
+        </tr>
+        <tr th:each="accountInfo : ${accountInfos}">
+            <td th:text="${accountInfo.id}"></td>
+            <td th:text="${accountInfo.fullName}"></td>
+            <td th:text="${accountInfo.balance}"></td>
+        </tr>
+    </table>
+</body>
+</html>

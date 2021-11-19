@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">
+    <title>Bank</title>
+</head>
+
+<body>
+    <th:block th:include="/_menu"></th:block>
+
+    <h2>Send Money</h2>
+    <ul>
+        <li th:each="accountInfo : ${accountInfos}" th:text="${accountInfo.id} + ' - ' + ${accountInfo.fullName}"></li>
+    </ul>
+
+    <div class="error" th:if="${errorMessage!=null}" th:text="${errorMessage}"></div>
+
+    <form th:action="@{/bank/sendMoney}" th:object="${sendMoneyForm}" method="POST">
+        <table>
+            <tr>
+                <td>From Bank Account Id</td>
+                <td><input type="text" th:field="*{fromAccountId}"></td>
+            </tr>
+            <tr>
+                <td>To Bank Account Id</td>
+                <td><input type="text" th:field="*{toAccountId}"></td>
+            </tr>
+            <tr>
+                <td>Amount</td>
+                <td><input type="text" th:field="*{amount}" ></td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Send"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
